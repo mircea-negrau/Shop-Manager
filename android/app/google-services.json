@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "191337330609",
+    "project_id": "dantelion-shop",
+    "storage_bucket": "dantelion-shop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191337330609:android:e6d905b3b9c18b725aef90",
+        "android_client_info": {
+          "package_name": "dantelion.shop.dantelion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "191337330609-e7nfrmdjbdh17bdcv3hj5obkt835ruib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dantelion.shop.dantelion",
+            "certificate_hash": "f41763855de5a570960cd48399804b1acf7ccb5f"
+          }
+        },
+        {
+          "client_id": "191337330609-nii17kj3l7dfc094kgemli0kc59ghul1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNx-khJ_BgOZtVXbfcLg1ZeTzF-WenYf4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "191337330609-nii17kj3l7dfc094kgemli0kc59ghul1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
