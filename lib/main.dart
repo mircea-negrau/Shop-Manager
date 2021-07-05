@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dantelion/views/taskView.dart';
+import 'package:dantelion/views/01-main/mainView.dart';
 
 import 'services/googleSheetsApi.dart';
 
@@ -17,10 +17,9 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Dantelion',
       theme: ThemeData(
-        primaryColor: Colors.pink[100],
-        primarySwatch: Colors.pink,
+        primaryColor: Colors.white,
       ),
-      home: TaskView(),
+      home: MainView(),
     );
   }
 }

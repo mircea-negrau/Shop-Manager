@@ -4,7 +4,7 @@ import 'package:gsheets/gsheets.dart';
 class ClientSheetsApi {
   static final _spreadSheetId = "1uvdLlcodT2gD7_-y_2Ds9fWXyvHL4tWZnuGQM4-Qqy4";
   static final _googleSheets = GSheets(_credentials);
-  static Worksheet? _userSheet;
+  static Worksheet? _orderSheet;
 
   static const _credentials = r'''{
     "type": "service_account",
@@ -23,23 +23,23 @@ class ClientSheetsApi {
   static Future<void> init() async {
     try {
       final spreadsheet = await _googleSheets.spreadsheet(_spreadSheetId);
-      _userSheet = await _getWorkSheet(spreadsheet, title: 'Orders');
+      _orderSheet = await _getWorkSheet(spreadsheet, title: 'Orders');
       final firstRow = OrderFields.getFields();
-      _userSheet!.values.insertRow(1, firstRow);
+      _orderSheet!.values.insertRow(1, firstRow);
     } catch (e) {
       print('Init error: $e');
     }
   }
 
   static Future<Order?> getById(int id) async {
-    if (_userSheet == null) return null;
-    final json = await _userSheet!.values.map.rowByKey(id, fromColumn: 1);
+    if (_orderSheet == null) return null;
+    final json = await _orderSheet!.values.map.rowByKey(id, fromColumn: 1);
     return json == null ? null : Order.fromJson(json);
   }
 
   static Future<int> _getRowCount() async {
-    if (_userSheet == null) return 0;
-    final lastRow = await _userSheet!.values.lastRow();
+    if (_orderSheet == null) return 0;
+    final lastRow = await _orderSheet!.values.lastRow();
     return lastRow == null ? 0 : int.tryParse(lastRow.first) ?? 0;
   }
 
@@ -53,25 +53,25 @@ class ClientSheetsApi {
   }
 
   static Future insert(List<Map<String, dynamic>> rowList) async {
-    if (_userSheet == null) return;
-    _userSheet!.values.map.appendRows(rowList);
+    if (_orderSheet == null) return;
+    _orderSheet!.values.map.appendRows(rowList);
   }
 
   static Future<List<Order>> getAll() async {
-    if (_userSheet == null) return <Order>[];
-    final orders = await _userSheet!.values.map.allRows();
+    if (_orderSheet == null) return <Order>[];
+    final orders = await _orderSheet!.values.map.allRows();
     return orders == null ? <Order>[] : orders.map(Order.fromJson).toList();
   }
 
   static Future<bool> update(int id, Map<String, dynamic> order) async {
-    if (_userSheet == null) return false;
-    return _userSheet!.values.map.insertRowByKey(id, order);
+    if (_orderSheet == null) return false;
+    return _orderSheet!.values.map.insertRowByKey(id, order);
   }
 
   static Future<bool> deleteById(int id) async {
-    if (_userSheet == null) return false;
-    final index = await _userSheet!.values.rowIndexOf(id);
+    if (_orderSheet == null) return false;
+    final index = await _orderSheet!.values.rowIndexOf(id);
     if (index == -1) return false;
-    return _userSheet!.deleteRow(index);
+    return _orderSheet!.deleteRow(index);
   }
 }
