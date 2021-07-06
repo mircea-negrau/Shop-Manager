@@ -64,7 +64,9 @@ class OrderSheetsApi {
   static Future<List<Order>> getAll() async {
     if (_orderSheet == null) return <Order>[];
     final orders = await _orderSheet!.values.map.allRows();
-    return orders == null ? <Order>[] : orders.map(Order.fromJson).toList();
+    return orders == null
+        ? <Order>[]
+        : orders.map(Order.fromJson).toList().reversed.toList();
   }
 
   static Future<bool> update(int id, Map<String, dynamic> order) async {

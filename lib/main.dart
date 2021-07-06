@@ -38,7 +38,7 @@ class App extends StatelessWidget {
               color: Colors.white,
               child: Center(
                 child: CircularProgressIndicator(
-                  backgroundColor: Colors.white,
+                backgroundColor: Colors.white,
                 ),
               ));
         });

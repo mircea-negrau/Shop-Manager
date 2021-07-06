@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   gsheets: ^0.3.1
+  jiffy: ^4.1.0
 
 dev_dependencies:
   flutter_test:

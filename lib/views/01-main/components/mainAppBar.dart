@@ -1,9 +1,11 @@
-import 'dart:async';
 import 'package:dantelion/views/02-addOrder/addOrder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-AppBar mainAppBar(BuildContext context, addOrder) {
+AppBar mainAppBar(BuildContext context, addOrder, showArchived, showOrders) {
+  Icon icon = Icon(Icons.archive_outlined);
+  if(!showOrders)
+    icon = Icon(Icons.list);
   return AppBar(
     backgroundColor: Colors.white,
     elevation: 0,
@@ -27,8 +29,8 @@ AppBar mainAppBar(BuildContext context, addOrder) {
         highlightColor: Colors.transparent,
       ),
       IconButton(
-        icon: Icon(Icons.assignment_outlined),
-        onPressed: () {},
+        icon: icon,
+        onPressed: showArchived,
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
       ),

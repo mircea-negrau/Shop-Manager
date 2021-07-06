@@ -21,7 +21,7 @@ class _AddOrderViewState extends State<AddOrderView> {
   final usernameController = TextEditingController();
   final nameController = TextEditingController();
   final transportCostController = TextEditingController();
-  final finalCostController = TextEditingController();
+  final itemsCostController = TextEditingController();
   final detailsController = TextEditingController();
 
   @override
@@ -29,7 +29,7 @@ class _AddOrderViewState extends State<AddOrderView> {
     usernameController.dispose();
     nameController.dispose();
     transportCostController.dispose();
-    finalCostController.dispose();
+    itemsCostController.dispose();
     detailsController.dispose();
     super.dispose();
   }
@@ -39,7 +39,7 @@ class _AddOrderViewState extends State<AddOrderView> {
     return Scaffold(
         appBar: backAppBar(context),
         body: SafeArea(
-          minimum: const EdgeInsets.all(16),
+          minimum: const EdgeInsets.all(32),
           child: Center(
             child: Container(
               color: Colors.white,
@@ -58,6 +58,14 @@ class _AddOrderViewState extends State<AddOrderView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        Center(
+          child: Text(
+            "Add Order",
+            style: TextStyle(fontFamily: 'Pacifico', fontSize: 30.0),
+          ),
+        ),
+        separator(),
+        separator(),
         textField("Username", usernameController, false),
         separator(),
         textField("Name", nameController, false),
@@ -66,7 +74,7 @@ class _AddOrderViewState extends State<AddOrderView> {
         separator(),
         numberField("Transport cost", transportCostController),
         separator(),
-        numberField("Final cost", finalCostController),
+        numberField("Final cost", itemsCostController),
         separator(),
         textField("Details", detailsController, false),
         separator(),
@@ -75,7 +83,8 @@ class _AddOrderViewState extends State<AddOrderView> {
           usernameController: usernameController,
           nameController: nameController,
           transportType: _transportType,
-          transportCostController: transportCostController,
+          itemsCostController: transportCostController,
+          transportCostController: itemsCostController,
           detailsController: detailsController,
         ),
       ],
