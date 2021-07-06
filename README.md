@@ -3,7 +3,7 @@
 An Instagram-based clothing shop mobile application manager developed using Flutter.
 Project is under development.
 
-![Project Name](https://user-images.githubusercontent.com/74305289/124661183-d8a0ec00-deaf-11eb-91e9-620e8963e001.gif)
+https://user-images.githubusercontent.com/74305289/124661321-05ed9a00-deb0-11eb-8903-a214e17a83e6.mp4
 
 ## Overview
   
