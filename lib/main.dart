@@ -7,24 +7,40 @@ import 'services/googleSheetsApi/OrderSheetsApi.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await OrderSheetsApi.init();
-  await ArchivedSheetsApi.init();
-  await DeletedSheetsApi.init();
   runApp(App());
 }
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
+  Future initialize() async {
+    await OrderSheetsApi.init();
+    await ArchivedSheetsApi.init();
+    await DeletedSheetsApi.init();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Dantelion',
-      theme: ThemeData(
-        primaryColor: Colors.white,
-      ),
-      home: MainView(),
-    );
+    return FutureBuilder(
+        future: initialize(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) return ErrorWidget(snapshot.hasError);
+          if (snapshot.connectionState == ConnectionState.done)
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Dantelion',
+              theme: ThemeData(
+                primaryColor: Colors.white,
+              ),
+              home: MainView(),
+            );
+          return Container(
+              color: Colors.white,
+              child: Center(
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                ),
+              ));
+        });
   }
 }
