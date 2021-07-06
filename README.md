@@ -11,10 +11,10 @@ Project is under development.
     - Archived orders,
     - Deleted orders.
 
-      Loading screen 
+o Loading screen:
   [X] - shown while connecting to Firebase and Google Cloud. 
   
-      Dashboard: 
+o Dashboard: 
   [X] - all pending orders are shown in a separated ListView;
   [ ] - each order shows client's Instagram profile picture (awaiting Instagram API full release),
   [X]                             username, 
@@ -30,6 +30,6 @@ Project is under development.
             - Create new order;
   [X] - Archived orders view; 
   
-      Order Add Page:
+o Order Add Page:
   [X] - Form with validation receiving the required attributes of a new order;
   [X] - Upon completion, the page pops sliding back to the Dashboard refreshing the list of orders with the latest added on top;
