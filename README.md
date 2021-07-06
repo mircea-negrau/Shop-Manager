@@ -7,11 +7,11 @@ https://user-images.githubusercontent.com/74305289/124661321-05ed9a00-deb0-11eb-
 
 ## Overview
   
-Application communicates with Google Firebase synchronizing through Google Cloud to a Google Sheet.
-The Sheet is split into three Worksheets upon which CRUD operations are implemented:
-    - Pending orders,
-    - Archived orders,
-    - Deleted orders.
+Application communicates with Google Firebase synchronizing through Google Cloud to a Google Sheet.\
+The Sheet is split into three Worksheets upon which CRUD operations are implemented:\
+    - Pending orders,\
+    - Archived orders,\
+    - Deleted orders.\
 
 Loading screen:
   - [X] shown while connecting to Firebase and Google Cloud. 
