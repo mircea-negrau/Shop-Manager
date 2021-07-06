@@ -1,7 +1,7 @@
 import 'package:dantelion/models/order.dart';
 import 'package:gsheets/gsheets.dart';
 
-class ClientSheetsApi {
+class OrderSheetsApi {
   static final _spreadSheetId = "1uvdLlcodT2gD7_-y_2Ds9fWXyvHL4tWZnuGQM4-Qqy4";
   static final _googleSheets = GSheets(_credentials);
   static Worksheet? _orderSheet;
@@ -35,6 +35,10 @@ class ClientSheetsApi {
     if (_orderSheet == null) return null;
     final json = await _orderSheet!.values.map.rowByKey(id, fromColumn: 1);
     return json == null ? null : Order.fromJson(json);
+  }
+
+  static Future<int> getNextId() async {
+    return await _getRowCount() + 1;
   }
 
   static Future<int> _getRowCount() async {

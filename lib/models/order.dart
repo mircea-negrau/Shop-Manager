@@ -35,6 +35,7 @@ class Order {
   final int finalCost;
   final String status;
   final String date;
+  final String time;
   final String details;
 
   const Order({
@@ -46,6 +47,7 @@ class Order {
     required this.finalCost,
     required this.status,
     required this.date,
+    required this.time,
     required this.details,
   });
 
@@ -57,8 +59,8 @@ class Order {
     OrderFields.costWithoutTransport: this.costWithoutTransport,
     OrderFields.finalCost: this.finalCost,
     OrderFields.status: this.status,
-    OrderFields.date: this.date.toString(),
-    OrderFields.time: this.date.toString(),
+    OrderFields.date: this.date,
+    OrderFields.time: this.time,
     OrderFields.details: this.details,
   };
 
@@ -71,6 +73,7 @@ class Order {
     finalCost: jsonDecode(json[OrderFields.finalCost]),
     status: json[OrderFields.status],
     date: json[OrderFields.date],
+    time: json[OrderFields.time],
     details: json[OrderFields.details],
   );
 }

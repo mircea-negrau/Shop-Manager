@@ -71,12 +71,13 @@ class _AddOrderViewState extends State<AddOrderView> {
         textField("Details", detailsController, false),
         separator(),
         SubmitNewOrderButton(
-            formKey: _formKey,
-            usernameController: usernameController,
-            nameController: nameController,
-            transportType: _transportType,
-            transportCostController: transportCostController,
-            detailsController: detailsController),
+          formKey: _formKey,
+          usernameController: usernameController,
+          nameController: nameController,
+          transportType: _transportType,
+          transportCostController: transportCostController,
+          detailsController: detailsController,
+        ),
       ],
     );
   }

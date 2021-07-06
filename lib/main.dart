@@ -1,11 +1,15 @@
+import 'package:dantelion/services/googleSheetsApi/ArchivedSheetsApi.dart';
+import 'package:dantelion/services/googleSheetsApi/DeletedSheetsApi.dart';
 import 'package:flutter/material.dart';
 import 'package:dantelion/views/01-main/mainView.dart';
 
-import 'services/googleSheetsApi.dart';
+import 'services/googleSheetsApi/OrderSheetsApi.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await ClientSheetsApi.init();
+  await OrderSheetsApi.init();
+  await ArchivedSheetsApi.init();
+  await DeletedSheetsApi.init();
   runApp(App());
 }
 

@@ -1,5 +1,5 @@
 import 'package:dantelion/models/order.dart';
-import 'package:dantelion/services/googleSheetsApi.dart';
+import 'package:dantelion/services/googleSheetsApi/OrderSheetsApi.dart';
 import 'package:flutter/material.dart';
 
 class SubmitNewOrderButton extends StatelessWidget {
@@ -34,8 +34,9 @@ class SubmitNewOrderButton extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      onPressed: () {
+      onPressed: () async {
         if (_formKey.currentState!.validate()) {
+          int id = await OrderSheetsApi.getNextId();
           var username = usernameController.text;
           var name = nameController.text;
           var transportType = _transportType;
@@ -45,20 +46,29 @@ class SubmitNewOrderButton extends StatelessWidget {
           var day = DateTime.now().day.toString();
           var month = DateTime.now().month.toString();
           var year = DateTime.now().year.toString();
+          var hour = DateTime.now().hour.toString();
+          var minute = DateTime.now().minute.toString();
+          var second = DateTime.now().second.toString();
+          var time = hour + ":" + minute + ":" + second;
           var date = day + "/" + month + "/" + year;
           var details = detailsController.text;
 
+          print(date);
+          print(time);
+
           Order newOrder = Order(
+            id: id,
             username: username,
             name: name,
             transportType: transportType,
             costWithoutTransport: costWithoutTransport,
             finalCost: finalCost,
             date: date,
+            time: time,
             details: details,
             status: "TO SEND",
           );
-          ClientSheetsApi.insert([newOrder.toJson()]);
+          OrderSheetsApi.insert([newOrder.toJson()]);
           Navigator.of(context).pop();
         }
       },
