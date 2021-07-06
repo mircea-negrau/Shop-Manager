@@ -17,79 +17,85 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
+  List<Order> _orders = [];
+
   _fetchOrders() async {
-    List orders = await OrderSheetsApi.getAll();
-    return orders;
+    _orders = await OrderSheetsApi.getAll();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchOrders();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _fetchOrders(),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (!snapshot.hasData) {
-          return Center(child: CircularProgressIndicator());
-        } else {
-          return Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.white,
-                elevation: 0,
-                title: Text(
-                  "Dantelion",
-                  style: TextStyle(fontFamily: 'Pacifico'),
-                ),
-                actions: [
-                  IconButton(
-                    icon: Icon(Icons.add_box_outlined),
-                    onPressed: () async {
-                      Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (context) => AddOrderView(),
-                          ));
-                    },
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.assignment_outlined),
-                    onPressed: () {},
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                  ),
-                ],
-              ),
-              body: ListView.separated(
-                  itemBuilder: (context, index) {
-                    final item = snapshot.data[index];
-                    return DismissibleOrder(
-                      item: item,
-                      child: buildListTile(item),
-                      onDismissed: (direction) =>
-                          dismissItem(context, index, direction, snapshot),
-                    );
-                  },
-                  separatorBuilder: (context, index) => Divider(),
-                  itemCount: snapshot.data.length));
-        }
-      },
-    );
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: Text(
+            "Dantelion",
+            style: TextStyle(fontFamily: 'Pacifico'),
+          ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.add_box_outlined),
+              onPressed: () async {
+                await Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) => AddOrderView(),
+                    )).then((order) {
+                  addOrder(context, order);
+                });
+              },
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            IconButton(
+              icon: Icon(Icons.assignment_outlined),
+              onPressed: () {},
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+          ],
+        ),
+        body: ListView.separated(
+            itemBuilder: (context, index) {
+              final item = _orders[index];
+              return DismissibleOrder(
+                item: item,
+                child: buildListTile(item),
+                onDismissed: (direction) =>
+                    dismissItem(context, index, direction),
+              );
+            },
+            separatorBuilder: (context, index) => Divider(),
+            itemCount: _orders.length));
   }
 
-  Future<void> dismissItem(BuildContext context, int index,
-      DismissDirection direction, AsyncSnapshot snapshot) async {
+  Future<void> addOrder(BuildContext context, Order order) async {
+    setState(() {
+      _orders.add(order);
+    });
+  }
+
+  Future<void> dismissItem(
+      BuildContext context, int index, DismissDirection direction) async {
     switch (direction) {
       case DismissDirection.startToEnd:
-        await OrderSheetsApi.deleteById(snapshot.data[index].id);
-        ArchivedSheetsApi.insert([snapshot.data[index].toJson()]);
+        OrderSheetsApi.deleteById(_orders[index].id!);
+        ArchivedSheetsApi.insert([_orders[index].toJson()]);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text("Archived"),
           duration: Duration(seconds: 2),
         ));
         break;
       case DismissDirection.endToStart:
-        await OrderSheetsApi.deleteById(snapshot.data[index].id);
-        DeletedSheetsApi.insert([snapshot.data[index].toJson()]);
+        OrderSheetsApi.deleteById(_orders[index].id!);
+        DeletedSheetsApi.insert([_orders[index].toJson()]);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text("Deleted"),
           duration: Duration(seconds: 2),
@@ -99,7 +105,7 @@ class _MainViewState extends State<MainView> {
         break;
     }
     setState(() {
-      snapshot.data.removeAt(index);
+      _orders.removeAt(index);
     });
   }
 

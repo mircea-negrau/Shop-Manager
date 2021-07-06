@@ -69,7 +69,7 @@ class SubmitNewOrderButton extends StatelessWidget {
             status: "TO SEND",
           );
           OrderSheetsApi.insert([newOrder.toJson()]);
-          Navigator.of(context).pop();
+          Navigator.of(context).pop(newOrder);
         }
       },
     );
