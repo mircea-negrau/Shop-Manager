@@ -27,8 +27,8 @@ Dashboard:
   - [X] swiped from Start to End the order gets Archived; 
   - [X] swiped from End to Start the order gets Deleted;
   - [X] bottom navigation bar switches between Orders View and Business Statistics;
-  - [X] top appBar shows brand logo and two buttons: 
-            - Archive viewer;
+  - [X] top appBar shows brand logo and two buttons:\
+            - Archive viewer;\
             - Create new order;
   - [X] Archived orders view; 
   
