@@ -6,7 +6,7 @@ Project is under development.
 ## Overview
   
   Application communicates with Google Firebase synchronizing through Google Cloud to a Google Sheet.
-  The Sheet is split into three Worksheets upon which CRUD operations are implemented.:
+  The Sheet is split into three Worksheets upon which CRUD operations are implemented:
     - Pending orders,
     - Archived orders,
     - Deleted orders.
