@@ -32,36 +32,7 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: Text(
-            "Dantelion",
-            style: TextStyle(fontFamily: 'Pacifico'),
-          ),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.add_box_outlined),
-              onPressed: () async {
-                await Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => AddOrderView(),
-                    )).then((order) {
-                  addOrder(context, order);
-                });
-              },
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-            ),
-            IconButton(
-              icon: Icon(Icons.assignment_outlined),
-              onPressed: () {},
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-            ),
-          ],
-        ),
+        appBar: mainAppBar(context, addOrder),
         body: ListView.separated(
             itemBuilder: (context, index) {
               final item = _orders[index];
@@ -76,7 +47,8 @@ class _MainViewState extends State<MainView> {
             itemCount: _orders.length));
   }
 
-  Future<void> addOrder(BuildContext context, Order order) async {
+  Future<void> addOrder(BuildContext context, order) async {
+    if (order.runtimeType == Null) return;
     setState(() {
       _orders.add(order);
     });

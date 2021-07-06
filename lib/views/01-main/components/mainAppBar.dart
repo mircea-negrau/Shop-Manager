@@ -3,7 +3,7 @@ import 'package:dantelion/views/02-addOrder/addOrder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-AppBar mainAppBar(BuildContext context, FutureOr onGoBack) {
+AppBar mainAppBar(BuildContext context, addOrder) {
   return AppBar(
     backgroundColor: Colors.white,
     elevation: 0,
@@ -14,12 +14,14 @@ AppBar mainAppBar(BuildContext context, FutureOr onGoBack) {
     actions: [
       IconButton(
         icon: Icon(Icons.add_box_outlined),
-        onPressed: (){
-          Navigator.push(
+        onPressed: () async {
+          await Navigator.push(
               context,
               CupertinoPageRoute(
                 builder: (context) => AddOrderView(),
-              ));
+              )).then((order) {
+            addOrder(context, order);
+          });
         },
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
