@@ -1,16 +1,35 @@
-# dantelion
+# Shop Manager
 
-Dantelion Shop application
+An Instagram-based clothing shop mobile application manager developed using Flutter.
+Project is under development.
 
-## Getting Started
+## Overview
+  
+  Application communicates with Google Firebase synchronizing through Google Cloud to a Google Sheet.
+  The Sheet is split into three Worksheets upon which CRUD operations are implemented.:
+    - Pending orders,
+    - Archived orders,
+    - Deleted orders.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+      Loading screen 
+  [X] - shown while connecting to Firebase and Google Cloud. 
+  
+      Dashboard: 
+  [X] - all pending orders are shown in a separated ListView;
+  [ ] - each order shows client's Instagram profile picture (awaiting Instagram API full release),
+  [X]                             username, 
+  [X]                             order status (PENDING/SENT/ARRIVED),
+  [X]                             time since placed (x minute(s) ago / y hours ago / last month / etc.),
+  [X]                             order price value.
+  [X] - each order is a Dismissable widget.
+  [X] - swiped from Start to End the order gets Archived; 
+  [X] - swiped from End to Start the order gets Deleted;
+  [X] - bottom navigation bar switches between Orders View and Business Statistics;
+  [X] - top appBar shows brand logo and two buttons: 
+            - Archive viewer;
+            - Create new order;
+  [X] - Archived orders view; 
+  
+      Order Add Page:
+  [X] - Form with validation receiving the required attributes of a new order;
+  [X] - Upon completion, the page pops sliding back to the Dashboard refreshing the list of orders with the latest added on top;
