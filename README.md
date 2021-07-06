@@ -3,6 +3,8 @@
 An Instagram-based clothing shop mobile application manager developed using Flutter.
 Project is under development.
 
+![Project Name](https://user-images.githubusercontent.com/74305289/124661183-d8a0ec00-deaf-11eb-91e9-620e8963e001.gif)
+
 ## Overview
   
 Application communicates with Google Firebase synchronizing through Google Cloud to a Google Sheet.
