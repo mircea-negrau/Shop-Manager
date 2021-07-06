@@ -12,11 +12,11 @@ The Sheet is split into three Worksheets upon which CRUD operations are implemen
     - Deleted orders.
 
 Loading screen:
-  [X] - shown while connecting to Firebase and Google Cloud. 
+  - [X] shown while connecting to Firebase and Google Cloud. 
   
 Dashboard: 
-  [X] - all pending orders are shown in a separated ListView;
-  [ ] - each order shows client's Instagram profile picture (awaiting Instagram API full release),
+  - [X] all pending orders are shown in a separated ListView;
+  - [ ] each order shows client's Instagram profile picture (awaiting Instagram API full release),
   [X]                             username, 
   [X]                             order status (PENDING/SENT/ARRIVED),
   [X]                             time since placed (x minute(s) ago / y hours ago / last month / etc.),
