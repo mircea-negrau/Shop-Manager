@@ -1,7 +1,7 @@
 # Shop Manager
 
 An Instagram-based clothing shop mobile application manager developed using Flutter.\
-Project is discontinued due to work.
+Project is discontinued due to incompatibility with Instragram API at the time.
 
 https://user-images.githubusercontent.com/74305289/124661321-05ed9a00-deb0-11eb-8903-a214e17a83e6.mp4
 
